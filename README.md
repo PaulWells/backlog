@@ -6,9 +6,12 @@ https://paulwells.github.io/backlog/
 <br>
 ## Roadmap
 
-1. <b>Basic Web UI</b>
-2. Backend for data persistence and synchronization
-3. Authentication & different users
-4. Android app
-5. Facebook integration
-6. iOS app
+- <b>Basic Web UI</b>
+- Integrate Redux
+- Add tests for basic web UI
+- Integrate react-router & add sign-in page
+- Backend for data persistence and synchronization
+- Authentication & different users
+- Android app
+- iOS app
+- Windows UWP

@@ -41,7 +41,7 @@ class LogTitle extends Component {
   render() {
     return (
       <div>
-      Test Log
+      Backlog
       </div>
     );
   }
@@ -84,25 +84,27 @@ class LogItem extends Component {
     super(props);
     this.state = {
       index: props.index,
-      done: false,
+      completed: false,
     }
     this.handleCheckBoxClick = this.handleCheckBoxClick.bind(this);
   }
 
   handleCheckBoxClick(event) {
-    console.log("handlecheck");
-    console.log(event.target.checked);
-    this.setState({done: event.target.checked});
+    this.setState({completed: event.target.checked});
   }
 
   render() {
-    console.log(this.state.done);
-    var className = (this.state.done ? "completedItem" : "");
+    console.log(this.state.completed);
     return (
       <div>
       <CheckBox onClick={this.handleCheckBoxClick}/>
-      <span className={className}>
-      {this.props.text}
+      <span style={{
+              textDecoration:
+              this.state.completed ?
+                'line-through' :
+                'none'
+            }}>
+            {this.props.text}
       </span>
       <DeleteIcon onDelete={() => this.props.onDelete(this.state.index)}/>
       </div>
@@ -130,7 +132,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BackLog/>
+        <div className="backlog">
+          <BackLog/>
+        </div>
       </div>
     );
   }
