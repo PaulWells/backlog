@@ -1,37 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
+import store from './index.js';
 
-
-class BackLog extends Component {
-
-  constructor () {
-    super();
-    this.state = {
-      listItems: [],
-    };
-
-    this.addLogItem = this.addLogItem.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  addLogItem (value) {
-    this.setState({ listItems: this.state.listItems.concat({text: value})});
-  }
-
-  handleDelete (index) {
-    this.setState({ listItems: this.state.listItems.filter(function (item, i) {
-      return i !== index;
-    })});
-  }
+class Backlog extends Component {
 
   render() {
+    console.log("Backlog element");
+    console.log(this.props.backlogState);
     return (
       <div>
       <LogTitle/>
-      {this.state.listItems.map(function(item, i){
-        return <LogItem text={item.text} onDelete={this.handleDelete} index={i} key={i}/>;
-      }.bind(this))}
-      <LogItemInput onEnter={this.addLogItem}/>
+      {this.props.backlogState.listItems.map(function(item, i){
+        return <LogItem text={item.text} index={i} completed={item.completed} key={i}/>;
+      })}
+      <LogItemInput value={this.props.backlogState.inputText}/>
       </div>
     );
   }
@@ -51,9 +33,6 @@ class LogItemInput extends Component {
 
   constructor (props) {
     super(props);
-    this.state = {
-      value: "",
-    };
 
     this.handleChange = this.handleChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
@@ -61,61 +40,57 @@ class LogItemInput extends Component {
 
   onKeyDown (event) {
     if (event.key === 'Enter') {
-      this.props.onEnter(this.state.value);
-      this.setState({value: ""});
+      store.dispatch({type: 'ADD_LIST_ITEM', text:this.props.value});
     }
   }
 
   handleChange (event) {
-    this.setState({value: event.target.value});
+    store.dispatch({type: 'UPDATE_NEW_LIST_ITEM_INPUT', value: event.target.value})
   }
 
   render() {
     return (
       <div>
-      <input type="text" value={this.state.value} onChange={this.handleChange} onKeyDown={this.onKeyDown}></input>
+      <input type="text" value={this.props.value} onChange={this.handleChange} onKeyDown={this.onKeyDown}></input>
       </div>
     );
   }
 }
 
 class LogItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      index: props.index,
-      completed: false,
-    }
-    this.handleCheckBoxClick = this.handleCheckBoxClick.bind(this);
-  }
-
-  handleCheckBoxClick(event) {
-    this.setState({completed: event.target.checked});
-  }
 
   render() {
-    console.log(this.state.completed);
     return (
       <div>
-      <CheckBox onClick={this.handleCheckBoxClick}/>
+      <CheckBox checked={this.props.completed} index={this.props.index}/>
       <span style={{
               textDecoration:
-              this.state.completed ?
+              this.props.completed ?
                 'line-through' :
                 'none'
             }}>
             {this.props.text}
       </span>
-      <DeleteIcon onDelete={() => this.props.onDelete(this.state.index)}/>
+      <DeleteIcon onDelete={() => store.dispatch({type: 'DELETE_LIST_ITEM', index: this.props.index })}/>
       </div>
     );
   }
 }
 
 class CheckBox extends Component {
+
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    store.dispatch({type: 'TOGGLE_LIST_ITEM_COMPLETED', completed: !this.props.checked, index: this.props.index});
+  }
+
   render() {
     return (
-      <input type="checkbox" onClick={this.props.onClick}/>
+      <input type="checkbox" checked={this.props.checked} onChange={this.handleChange}/>
     );
   }
 }
@@ -133,7 +108,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="backlog">
-          <BackLog/>
+          <Backlog backlogState={this.props.appState}/>
         </div>
       </div>
     );
