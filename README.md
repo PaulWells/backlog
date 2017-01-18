@@ -8,7 +8,7 @@ https://paulwells.github.io/backlog/
 
 - <b>Basic Web UI</b>
 - <b> Integrate Redux </b>
-- <b>Integrate Firebase for data persistence and synchronization<b>
+- <b>Integrate Firebase for data persistence and synchronization</b>
 - Setup test environment for Firebase
 - Android app
 - Windows UWP
