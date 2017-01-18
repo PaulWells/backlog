@@ -3,6 +3,20 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import { createStore } from 'redux';
+import firebase from "firebase/app";
+import "firebase/database";
+import config from "./config";
+
+// Firebase Configuration
+let FireConfig = {
+  apiKey: config.Key,
+  authDomain: config.Domain,
+  databaseURL: config.DB,
+  storageBucket: config.Storage,
+};
+
+// Initialize Our Firebase Connection
+firebase.initializeApp(FireConfig);
 
 const defaultState = {
     listItems: [],
@@ -43,13 +57,24 @@ let render = function(state) {
   );
 }
 
+function updateFirebase(state) {
+  firebase.database().ref('logItem/').set(state.listItems);
+}
 
 store.subscribe(() =>
   {
     render(store.getState());
+    updateFirebase(store.getState());
   }
 )
 
-render(defaultState);
+firebase.database().ref('logItem/').orderByChild('id').once('value').then(function(data) {
+  console.log(data.val());
+  let startState = {
+      listItems: data.val(),
+      inputText: "",
+  }
+  render(startState);
+});
 
 export default store;

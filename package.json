@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "firebase": "^3.6.6",
     "gh-pages": "^0.12.0",
     "react-scripts": "0.8.4",
     "redux-devtools": "^3.3.2"

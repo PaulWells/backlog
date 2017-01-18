@@ -7,11 +7,20 @@ https://paulwells.github.io/backlog/
 ## Roadmap
 
 - <b>Basic Web UI</b>
-- Integrate Redux
-- Add tests for basic web UI
-- Integrate react-router & add sign-in page
-- Backend for data persistence and synchronization
-- Authentication & different users
+- <b> Integrate Redux </b>
+- Integrate Firebase for data persistence and synchronization
+- Setup test environment for Firebase
 - Android app
-- iOS app
 - Windows UWP
+- iOS app
+- Facebook messenger integration
+- clean up code, separate database into own file etc
+- Add tests for basic web UI
+  - Reducers
+  - snapshot testing
+- Integrate react-router & add sign-in page
+- Authentication & different users
+- Integrate bootstrap (Improve UI)
+- Get updates (actions) from changes in firebase data
+- Update only the changing items
+- Handle synchronous updates
