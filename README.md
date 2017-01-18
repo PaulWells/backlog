@@ -8,7 +8,7 @@ https://paulwells.github.io/backlog/
 
 - <b>Basic Web UI</b>
 - <b> Integrate Redux </b>
-- <b>Integrate Firebase for data persistence and synchronization</b>
+- <b>Integrate Firebase</b>
 - Setup test environment for Firebase
 - Android app
 - Windows UWP
@@ -24,3 +24,9 @@ https://paulwells.github.io/backlog/
 - Get updates (actions) from changes in firebase data
 - Update only the changing items
 - Handle synchronous updates
+
+## Features
+
+- Todo list
+- Show which user added which item (Legend and color scheme?)
+- overscrolling
