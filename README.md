@@ -6,27 +6,28 @@ https://paulwells.github.io/backlog/
 <br>
 ## Roadmap
 
-- <b>Basic Web UI</b>
-- <b> Integrate Redux </b>
+- <b>Basic Web UI w/ React</b>
+- <b>Integrate Redux</b>
 - <b>Integrate Firebase</b>
-- Setup test environment for Firebase
+- <b>Setup dev environment</b>
+- <b>Windows UWP</b>
 - Android app
-- Windows UWP
 - iOS app
-- Facebook messenger integration
 - clean up code, separate database into own file etc
-- Add tests for basic web UI
-  - Reducers
-  - snapshot testing
+- Facebook messenger integration
 - Integrate react-router & add sign-in page
 - Authentication & different users
 - Integrate bootstrap (Improve UI)
+- Add tests for basic web UI
+  - Reducers
+  - snapshot testing
 - Get updates (actions) from changes in firebase data
-- Update only the changing items
+- Update only the changing items when writing data to db
 - Handle synchronous updates
 
 ## Features
 
 - Todo list
 - Show which user added which item (Legend and color scheme?)
-- overscrolling
+- Handle when there are too many backlog items to fit on the page
+- Edit existing log item

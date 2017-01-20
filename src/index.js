@@ -7,17 +7,6 @@ import firebase from "firebase/app";
 import "firebase/database";
 import config from "./config";
 
-// Firebase Configuration
-let FireConfig = {
-  apiKey: config.Key,
-  authDomain: config.Domain,
-  databaseURL: config.DB,
-  storageBucket: config.Storage,
-};
-
-// Initialize Our Firebase Connection
-firebase.initializeApp(FireConfig);
-
 const defaultState = {
     listItems: [],
     inputText: "",
@@ -44,11 +33,20 @@ function backlog(state = defaultState, action) {
     case 'UPDATE_NEW_LIST_ITEM_INPUT':
       return Object.assign({}, state, { inputText: action.value});
     default:
-      return defaultState;
+      return state;
   }
 }
 
-let store = createStore(backlog);
+let store;
+var callback;
+
+// Firebase Configuration
+let FireConfig = {
+  apiKey: config.Key,
+  authDomain: config.Domain,
+  databaseURL: config.DB,
+  storageBucket: config.Storage,
+};
 
 let render = function(state) {
   ReactDOM.render(
@@ -57,24 +55,39 @@ let render = function(state) {
   );
 }
 
+// Initialize Our Firebase Connection
+firebase.initializeApp(FireConfig);
+
 function updateFirebase(state) {
   firebase.database().ref('logItem/').set(state.listItems);
 }
 
-store.subscribe(() =>
-  {
-    render(store.getState());
-    updateFirebase(store.getState());
-  }
-)
-
 firebase.database().ref('logItem/').orderByChild('id').once('value').then(function(data) {
-  console.log(data.val());
   let startState = {
-      listItems: data.val(),
+      listItems: data.val() ? data.val() : [],
       inputText: "",
   }
-  render(startState);
+  store = createStore(backlog, startState);
+
+  store.subscribe(() =>
+    {
+      render(store.getState());
+      updateFirebase(store.getState());
+    }
+  )
+
+  if (callback) {
+    callback(store);
+  }
+
+  render(store.getState());
 });
 
-export default store;
+export default function getStore(cb) {
+
+  if (store) {
+    cb(store);
+  } else {
+    callback = cb;
+  }
+}

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import store from './index.js';
+import getStore from './index.js';
+
+var store;
+getStore(function (createdStore) {
+  store = createdStore;
+});
 
 class Backlog extends Component {
 
   render() {
-    console.log("Backlog element");
-    console.log(this.props.backlogState);
     return (
       <div>
       <LogTitle/>
