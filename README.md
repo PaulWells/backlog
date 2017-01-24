@@ -11,11 +11,10 @@ https://paulwells.github.io/backlog/
 - <b>Integrate Firebase</b>
 - <b>Setup dev environment</b>
 - <b>Windows UWP</b>
-- Android app
-- iOS app
-- clean up code, separate database into own file etc
-- Facebook messenger integration
+- <b>Android app</b>
+  - notifications
 - Integrate react-router & add sign-in page
+- iOS app
 - Authentication & different users
 - Integrate bootstrap (Improve UI)
 - Add tests for basic web UI

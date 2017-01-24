@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-import getStore from './index.js';
+import getStore from '../index.js';
 
 var store;
 getStore(function (createdStore) {
@@ -106,16 +105,4 @@ class DeleteIcon extends Component {
   }
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="backlog">
-          <Backlog backlogState={this.props.appState}/>
-        </div>
-      </div>
-    );
-  }
-}
-
-export default App;
+export { Backlog }
