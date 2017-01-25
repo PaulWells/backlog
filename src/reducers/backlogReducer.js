@@ -1,11 +1,10 @@
 
-const defaultState = {
-    listItems: [],
-    inputText: "",
-}
+const emptyState = {
+  listItems: [],
+  inputText: ""
+};
 
-function backlogReducer(state = defaultState, action) {
-  console.log(state);
+function backlogReducer(state = emptyState, action) {
   switch(action.type) {
     case 'ADD_LIST_ITEM':
       return Object.assign({}, state, { inputText: "", listItems: state.listItems.concat({ text: action.text, completed: false})});
@@ -24,9 +23,11 @@ function backlogReducer(state = defaultState, action) {
     }
     case 'UPDATE_NEW_LIST_ITEM_INPUT':
       return Object.assign({}, state, { inputText: action.value});
+    case 'LOAD_DATABASE':
+      return action.state;
     default:
       return state;
   }
 }
 
-export { backlogReducer }
+export { backlogReducer, emptyState }
