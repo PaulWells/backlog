@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import './index.css';
-import { createStore } from 'redux';
-import { backlogReducer } from "./reducers/backlog"
-import { updateFirebase, getAppState } from "./database/dbOperations"
+import { updateFirebase } from './database/dbOperations'
+import { store } from './store'
 
 let render = function(state) {
   ReactDOM.render(
@@ -13,35 +12,11 @@ let render = function(state) {
   );
 }
 
-let store;
-var callback;
-
-getAppState().then(function(data) {
-  let startState = {
-      listItems: data.val() ? data.val() : [],
-      inputText: "",
+store.subscribe(() =>
+  {
+    render(store.getState());
+    updateFirebase(store.getState());
   }
-  store = createStore(backlogReducer, startState);
+);
 
-  store.subscribe(() =>
-    {
-      render(store.getState());
-      updateFirebase(store.getState());
-    }
-  )
-
-  if (callback) {
-    callback(store);
-  }
-
-  render(store.getState());
-});
-
-export default function getStore(cb) {
-
-  if (store) {
-    cb(store);
-  } else {
-    callback = cb;
-  }
-}
+render(store.getState());

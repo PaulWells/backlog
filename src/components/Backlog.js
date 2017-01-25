@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import getStore from '../index.js';
-
-var store;
-getStore(function (createdStore) {
-  store = createdStore;
-});
+import { store } from '../store';
 
 class Backlog extends Component {
 
