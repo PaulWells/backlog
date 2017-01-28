@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { store } from '../store';
 
 class LogItem extends Component {
-  constructor(props) {
-    super(props);
-    this.handleCheck = this.handleCheck.bind(this);
-    this.onDelete = this.onDelete.bind(this);
-  }
 
   componentDidMount() {
+    const { store } = this.context;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
   }
 
@@ -16,28 +11,30 @@ class LogItem extends Component {
     this.unsubscribe();
   }
 
-  handleCheck(completed) {
-    const state = store.getState();
-    const index = this.props.index;
-    store.dispatch({type: 'TOGGLE_LIST_ITEM_COMPLETED', completed: !state.listItems[index].completed, index});
-  }
-
-  onDelete() {
-    store.dispatch({type: 'DELETE_LIST_ITEM', index:this.props.index});
-  }
-
   render() {
-    const props = this.props;
-    const state = store.getState();
-    const listItem = state.listItems[props.index];
+    const { store } = this.context;
+    const { index } = this.props;
+    const listItem = store.getState().listItems[this.props.index];
+
+    function handleCheck(completed) {
+      store.dispatch({type: 'TOGGLE_LIST_ITEM_COMPLETED', completed: !listItem.completed, index});
+    }
+
+    function onDelete() {
+      store.dispatch({type: 'DELETE_LIST_ITEM', index});
+    }
+
     return (
       <ListItem
         completed={listItem.completed}
         text={listItem.text}
-        handleCheck={this.handleCheck}
-        onDelete={this.onDelete}/>
+        handleCheck={handleCheck}
+        onDelete={onDelete}/>
     )
   }
+}
+LogItem.contextTypes = {
+  store: React.PropTypes.object
 }
 
 const ListItem = ({
