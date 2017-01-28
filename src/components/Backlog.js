@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { store } from '../store';
 import { LogItemInput } from './LogItemInput';
 import { LogItem } from './LogItem';
 
@@ -13,7 +12,7 @@ class Backlog extends Component {
         return <LogItem
                   index={i}
                   key={i}/>;
-      }.bind(this))}
+      })}
       <LogItemInput/>
       </div>
     );
