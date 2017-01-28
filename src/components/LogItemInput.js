@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { store } from '../store';
 
 // Presentational component which has no business logic
 const Input = ({
@@ -17,40 +16,38 @@ const Input = ({
 // parent component
 class LogItemInput extends Component {
 
-  constructor(props) {
-    super(props);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
-  }
-
   componentDidMount() {
-    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+    this.unsubscribe = this.context.store.subscribe(() => this.forceUpdate());
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
 
-  onKeyDown(event) {
-    const state = store.getState();
-    if (event.key === 'Enter') {
-      store.dispatch({type: 'ADD_LIST_ITEM', text: state.inputText});
-    }
-  }
-
-  handleTextChange(event) {
-    store.dispatch({type: 'UPDATE_NEW_LIST_ITEM_INPUT', value: event.target.value})
-  }
-
   render() {
+    const { store } = this.context;
     const state = store.getState();
+
+    function onKeyDown(event) {
+      if (event.key === 'Enter') {
+        store.dispatch({type: 'ADD_LIST_ITEM', text: state.inputText});
+      }
+    }
+
+    function handleTextChange(event) {
+      store.dispatch({type: 'UPDATE_NEW_LIST_ITEM_INPUT', value: event.target.value})
+    }
+
     return (
       <Input
-        onKeyDown={this.onKeyDown}
-        handleTextChange={this.handleTextChange}
+        onKeyDown={onKeyDown}
+        handleTextChange={handleTextChange}
         value={state ? state.inputText : ""}/>
     );
   }
+}
+LogItemInput.contextTypes = {
+  store: React.PropTypes.object
 }
 
 export { LogItemInput }
