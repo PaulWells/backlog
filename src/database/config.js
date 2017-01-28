@@ -5,11 +5,11 @@ let dev = {
   Storage: "backlog-dev.appspot.com"
 }
 
-let prod = {
-  Key: "fbAe69goQBz0KND8zP3nMEee8VucweI2zFDCde9F",
-  Domain: "backlog-20eea.firebaseio.com",
-  DB: "https://backlog-20eea.firebaseio.com/",
-  Storage: "backlog-20eea.appspot.com"
-}
+// let prod = {
+//   Key: "fbAe69goQBz0KND8zP3nMEee8VucweI2zFDCde9F",
+//   Domain: "backlog-20eea.firebaseio.com",
+//   DB: "https://backlog-20eea.firebaseio.com/",
+//   Storage: "backlog-20eea.appspot.com"
+// }
 
 module.exports = dev;
