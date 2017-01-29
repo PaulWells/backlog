@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updateNewListItemInput, addListItem } from '../actionCreators';
 
 // Presentational component which has no business logic
 const Input = ({
@@ -22,7 +23,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleTextChange: (event) => {
-      dispatch({type: 'UPDATE_NEW_LIST_ITEM_INPUT', value: event.target.value})
+      dispatch(updateNewListItemInput(event.target.value));
     },
     dispatch
   }
@@ -31,15 +32,14 @@ const mapDispatchToProps = (dispatch) => {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;
   const { value } = stateProps;
-
   return {
     onKeyDown: (event) => {
       if (event.key === 'Enter') {
-        dispatch({type: 'ADD_LIST_ITEM', text: value});
+        dispatch(addListItem(value));
       }
     },
     handleTextChange: dispatchProps.handleTextChange,
-    ...stateProps,
+    value,
   }
 };
 

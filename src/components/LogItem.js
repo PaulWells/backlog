@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toggleListItemCompleted, deleteListItem } from '../actionCreators';
 
 const ListItem = ({
   completed,
@@ -56,10 +57,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     completed,
     text: listItem.text,
     handleCheck: () => {
-      dispatch({type: 'TOGGLE_LIST_ITEM_COMPLETED', completed: !completed, index});
+      dispatch(toggleListItemCompleted(completed, index));
     },
     onDelete: () => {
-      dispatch({type: 'DELETE_LIST_ITEM', index});
+      dispatch(deleteListItem(index));
     }
   }
 };
