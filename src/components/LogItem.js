@@ -1,41 +1,5 @@
 import React, { Component } from 'react';
-
-class LogItem extends Component {
-
-  componentDidMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() => this.forceUpdate());
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  render() {
-    const { store } = this.context;
-    const { index } = this.props;
-    const listItem = store.getState().listItems[this.props.index];
-
-    function handleCheck(completed) {
-      store.dispatch({type: 'TOGGLE_LIST_ITEM_COMPLETED', completed: !listItem.completed, index});
-    }
-
-    function onDelete() {
-      store.dispatch({type: 'DELETE_LIST_ITEM', index});
-    }
-
-    return (
-      <ListItem
-        completed={listItem.completed}
-        text={listItem.text}
-        handleCheck={handleCheck}
-        onDelete={onDelete}/>
-    )
-  }
-}
-LogItem.contextTypes = {
-  store: React.PropTypes.object
-}
+import { connect } from 'react-redux';
 
 const ListItem = ({
   completed,
@@ -70,4 +34,40 @@ const DeleteIcon = ({
   <button onClick={onDelete}>X</button>
 );
 
-export { LogItem  }
+const mapStateToProps = (state) => {
+  return {
+    state: state
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch
+  }
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const { dispatch } = dispatchProps;
+  const { index } = ownProps;
+  const listItem = stateProps.state.listItems[index];
+  const { completed } = listItem;
+
+  return {
+    completed,
+    text: listItem.text,
+    handleCheck: () => {
+      dispatch({type: 'TOGGLE_LIST_ITEM_COMPLETED', completed: !completed, index});
+    },
+    onDelete: () => {
+      dispatch({type: 'DELETE_LIST_ITEM', index});
+    }
+  }
+};
+
+const LogItem = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(ListItem);
+
+export { LogItem }
