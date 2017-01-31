@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { updateNewListItemInput, addListItem } from '../actionCreators';
 
@@ -14,20 +14,16 @@ const Input = ({
   </div>
 );
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     value: state ? state.inputText : ""
-  }
-};
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleTextChange: (event) => {
-      dispatch(updateNewListItemInput(event.target.value));
-    },
-    dispatch
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleTextChange: (event) => {
+    dispatch(updateNewListItemInput(event.target.value));
+  },
+  dispatch
+});
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;

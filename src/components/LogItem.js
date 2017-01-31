@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { toggleListItemCompleted, deleteListItem } from '../actionCreators';
 
@@ -35,17 +35,13 @@ const DeleteIcon = ({
   <button onClick={onDelete}>X</button>
 );
 
-const mapStateToProps = (state) => {
-  return {
-    state: state
-  }
-};
+const mapStateToProps = (state) => ({
+  state: state
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  dispatch
+});
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;
