@@ -10,7 +10,7 @@ getAppState().then(function(data) {
   const startState = {
       listItems: data.val(),
       inputText: "",
-  }
+  };
 
   store.dispatch({ type: 'LOAD_DATABASE', state: startState});
 });
