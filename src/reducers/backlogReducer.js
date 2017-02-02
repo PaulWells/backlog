@@ -1,4 +1,3 @@
-
 const emptyState = {
   listItems: [],
   inputText: ""
@@ -7,24 +6,29 @@ const emptyState = {
 function backlogReducer(state = emptyState, action) {
   switch(action.type) {
     case 'ADD_LIST_ITEM':
-      return Object.assign({}, state, { inputText: "", listItems: state.listItems.concat({ text: action.text, completed: false})});
+      return Object.assign({}, state, { inputText: "", listItems: state.listItems.concat(action.item)});
     case 'DELETE_LIST_ITEM':
     {
       let listItems = state.listItems.filter(function (item, i) {
-        return i !== action.index;
+        return item.id !== action.id;
       });
       return Object.assign({}, state, {listItems});
     }
     case 'TOGGLE_LIST_ITEM_COMPLETED':
     {
-      let listItems = state.listItems.slice()
-      listItems[action.index].completed = action.completed;
+      // refactor to use id
+      let listItems = state.listItems.map(function (item) {
+        if (item.id === action.id) {
+          return Object.assign({}, item, {completed: !item.completed});
+        }
+        return item;
+      });
       return Object.assign({}, state, {listItems});
     }
     case 'UPDATE_NEW_LIST_ITEM_INPUT':
       return Object.assign({}, state, { inputText: action.value});
     case 'LOAD_DATABASE':
-      return action.state;
+      return Object.assign({}, state, { listItems: action.listItems});
     default:
       return state;
   }

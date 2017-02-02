@@ -30,3 +30,5 @@ https://paulwells.github.io/backlog/
 - Show which user added which item (Legend and color scheme?)
 - Handle when there are too many backlog items to fit on the page
 - Edit existing log item
+- Completed backlog items disappear after 24 hours
+- Incomplete items expire after 2 weeks

@@ -2,17 +2,23 @@ import React from 'react';
 import { LogItemInput } from './LogItemInput';
 import { connect } from 'react-redux';
 import { LogItem } from './LogItem';
+import { isOlderThanOneDay } from '../utils/time';
 
 const BacklogComponent = ({
   listItems
 }) => (
   <div className="backlog">
     <LogTitle/>
-    { listItems.map(function(item, i){
-      return <LogItem
-                index={i}
-                key={i}/>;
-    })}
+    {
+      listItems.filter(function (item) {
+        return !isOlderThanOneDay(new Date(item.dateAdded));
+      })
+      .map(function(item, i){
+        return <LogItem
+                listItem={item}
+                key={item.id}/>;
+      })
+    }
     <LogItemInput/>
   </div>
 );

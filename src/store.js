@@ -3,17 +3,13 @@ import { createStore } from 'redux';
 import { getAppState } from './database/dbOperations';
 import { loadState, saveState } from './localStorage';
 import throttle from 'lodash/throttle';
+import ActionCreators from './actionCreators';
 
 const configureStore = () => {
   var store = createStore(backlogReducer, loadState());
 
   getAppState().then(function(data) {
-    const startState = {
-        listItems: data.val(),
-        inputText: "",
-    };
-
-    store.dispatch({ type: 'LOAD_DATABASE', state: startState});
+    store.dispatch(ActionCreators.loadDatabase(data.val()));
   });
 
   store.subscribe(throttle(() => {

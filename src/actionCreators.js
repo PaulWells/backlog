@@ -1,20 +1,25 @@
-const updateNewListItemInput = (value) => ({
-  type: 'UPDATE_NEW_LIST_ITEM_INPUT',
-  value
-});
+const ActionCreators = {
+  updateNewListItemInput: (value) => ({
+    type: 'UPDATE_NEW_LIST_ITEM_INPUT',
+    value
+  }),
+  addListItem: (item) => ({
+    type: 'ADD_LIST_ITEM',
+    item
+  }),
+  toggleListItemCompleted: (completed, id) => ({
+    type: 'TOGGLE_LIST_ITEM_COMPLETED',
+    completed: !completed,
+    id
+  }),
+  deleteListItem: (id) => ({
+    type: 'DELETE_LIST_ITEM',
+    id
+  }),
+  loadDatabase: (listItems) => ({
+    type: 'LOAD_DATABASE',
+    listItems
+  })
+};
 
-const addListItem = (value) => ({
-  type: 'ADD_LIST_ITEM',
-  text: value
-});
-
-const toggleListItemCompleted = (completed, index) => ({
-  type: 'TOGGLE_LIST_ITEM_COMPLETED',
-  completed: !completed, index
-});
-
-const deleteListItem = (index) => ({
-  type: 'DELETE_LIST_ITEM', index
-});
-
-export { updateNewListItemInput, addListItem, toggleListItemCompleted, deleteListItem }
+export default ActionCreators;

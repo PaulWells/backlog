@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleListItemCompleted, deleteListItem } from '../actionCreators';
+import ActionCreators from '../actionCreators';
 
 const ListItem = ({
   completed,
@@ -35,36 +35,46 @@ const DeleteIcon = ({
   <button onClick={onDelete}>X</button>
 );
 
-const mapStateToProps = (state) => ({
-  state: state
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  dispatch
-});
-
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { dispatch } = dispatchProps;
-  const { index } = ownProps;
-  const listItem = stateProps.state.listItems[index];
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { listItem } = ownProps;
+  const { id } = listItem;
   const { completed } = listItem;
+  console.log(completed);
 
   return {
     completed,
     text: listItem.text,
     handleCheck: () => {
-      dispatch(toggleListItemCompleted(completed, index));
+      dispatch(ActionCreators.toggleListItemCompleted(completed, id));
     },
     onDelete: () => {
-      dispatch(deleteListItem(index));
+      dispatch(ActionCreators.deleteListItem(id));
     }
   }
 };
 
+// const mergeProps = (stateProps, dispatchProps, ownProps) => {
+//   const { dispatch } = dispatchProps;
+//   const { listItem } = ownProps;
+//   const { id } = listItem;
+//   const { completed } = listItem;
+//   console.log(completed);
+//
+//   return {
+//     completed,
+//     text: listItem.text,
+//     handleCheck: () => {
+//       dispatch(toggleListItemCompleted(completed, id));
+//     },
+//     onDelete: () => {
+//       dispatch(deleteListItem(id));
+//     }
+//   }
+// };
+
 const LogItem = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  mergeProps
+  null,
+  mapDispatchToProps
 )(ListItem);
 
 export { LogItem }

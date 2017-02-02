@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateNewListItemInput, addListItem } from '../actionCreators';
+import ActionCreators from '../actionCreators';
+import { createListItem } from '../objectCreators';
 
 // Presentational component which has no business logic
 const Input = ({
@@ -20,7 +21,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleTextChange: (event) => {
-    dispatch(updateNewListItemInput(event.target.value));
+    dispatch(ActionCreators.updateNewListItemInput(event.target.value));
   },
   dispatch
 });
@@ -31,7 +32,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return {
     onKeyDown: (event) => {
       if (event.key === 'Enter') {
-        dispatch(addListItem(value));
+        dispatch(ActionCreators.addListItem(createListItem(value)));
       }
     },
     handleTextChange: dispatchProps.handleTextChange,
