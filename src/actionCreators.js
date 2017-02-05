@@ -7,10 +7,11 @@ const ActionCreators = {
     type: 'ADD_LIST_ITEM',
     item
   }),
-  toggleListItemCompleted: (completed, id) => ({
+  toggleListItemCompleted: (completed, id, dateCompleted) => ({
     type: 'TOGGLE_LIST_ITEM_COMPLETED',
     completed: !completed,
-    id
+    id,
+    dateCompleted
   }),
   deleteListItem: (id) => ({
     type: 'DELETE_LIST_ITEM',

@@ -11,7 +11,7 @@ const BacklogComponent = ({
     <LogTitle/>
     {
       listItems.filter(function (item) {
-        return !isOlderThanOneDay(new Date(item.dateAdded));
+        return !isOlderThanOneDay(new Date(item.dateCompleted));
       })
       .map(function(item, i){
         return <LogItem
@@ -40,4 +40,4 @@ const Backlog = connect(
   mapStateToProps
 )(BacklogComponent);
 
-export { Backlog }
+export default Backlog

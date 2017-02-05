@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ActionCreators from '../actionCreators';
+import { currentTime } from '../utils/time';
 
 const ListItem = ({
   completed,
@@ -39,38 +40,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { listItem } = ownProps;
   const { id } = listItem;
   const { completed } = listItem;
-  console.log(completed);
 
   return {
     completed,
     text: listItem.text,
     handleCheck: () => {
-      dispatch(ActionCreators.toggleListItemCompleted(completed, id));
+      dispatch(ActionCreators.toggleListItemCompleted(completed, id, currentTime()));
     },
     onDelete: () => {
       dispatch(ActionCreators.deleteListItem(id));
     }
   }
 };
-
-// const mergeProps = (stateProps, dispatchProps, ownProps) => {
-//   const { dispatch } = dispatchProps;
-//   const { listItem } = ownProps;
-//   const { id } = listItem;
-//   const { completed } = listItem;
-//   console.log(completed);
-//
-//   return {
-//     completed,
-//     text: listItem.text,
-//     handleCheck: () => {
-//       dispatch(toggleListItemCompleted(completed, id));
-//     },
-//     onDelete: () => {
-//       dispatch(deleteListItem(id));
-//     }
-//   }
-// };
 
 const LogItem = connect(
   null,

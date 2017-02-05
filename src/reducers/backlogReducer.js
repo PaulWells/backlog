@@ -19,7 +19,7 @@ function backlogReducer(state = emptyState, action) {
       // refactor to use id
       let listItems = state.listItems.map(function (item) {
         if (item.id === action.id) {
-          return Object.assign({}, item, {completed: !item.completed});
+          return Object.assign({}, item, {completed: !item.completed, dateCompleted: action.dateCompleted});
         }
         return item;
       });

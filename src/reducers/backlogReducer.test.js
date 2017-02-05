@@ -2,32 +2,10 @@ import { backlogReducer } from './backlogReducer';
 import { emptyState } from './backlogReducer';
 import deepFreeze from 'deep-freeze';
 import ActionCreators from '../actionCreators';
+import { createMockState, createMockListItems, createMockListItem } from '../mocks/mockState';
 
 test('Passing no state or action returns empty state', () => {
   expect(backlogReducer(undefined, {})).toEqual(emptyState);
-});
-
-const createMockListItem = (item) => {
-  const defaultObject = {
-    completed: false,
-    text: "",
-    id: 0,
-    dateAdded: "today"
-  }
-
-  return Object.assign({}, defaultObject, item);
-
-};
-
-const createMockListItems = (items) => {
-  return items.map(function (item, i) {
-    return createMockListItem(item);
-  })
-}
-
-const createMockState = (listItems = [], inputText = "") => ({
-  inputText,
-  listItems
 });
 
 test('ADD_LIST_ITEM adds a list item', () => {
@@ -36,8 +14,8 @@ test('ADD_LIST_ITEM adds a list item', () => {
 
   const text = "hello";
 
-  const action = ActionCreators.addListItem(createMockListItem(text));
-  const outState = createMockState(createMockListItems([text]))
+  const action = ActionCreators.addListItem(createMockListItem({text}));
+  const outState = createMockState(createMockListItems([{text}]))
 
   expect(backlogReducer(state, action)).toEqual(outState);
 });
@@ -78,9 +56,9 @@ test('UPDATE_NEW_LIST_ITEM_INPUT updates input field', () => {
 test('LOAD_DATABASE replaces state object completely', () => {
   const initialText = 'hello';
   const dbText = ['a', 'b'];
-  let initialState = createMockState(createMockListItems([initialText]));
+  let initialState = createMockState(createMockListItems([{text: initialText}]));
   deepFreeze(initialState);
-  const dbState = createMockState(createMockListItems(dbText));
-  const action = ActionCreators.loadDatabase(createMockListItems(dbText));
+  const dbState = createMockState(createMockListItems([{text: dbText}]));
+  const action = ActionCreators.loadDatabase(createMockListItems([{text: dbText}]));
   expect(backlogReducer(initialState, action)).toEqual(dbState);
 });

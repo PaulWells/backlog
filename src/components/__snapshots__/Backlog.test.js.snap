@@ -1,0 +1,117 @@
+exports[`test It does not render items that were completed more than 24 hours ago 1`] = `
+<div
+  className="backlog">
+  <div>
+    Backlog
+  </div>
+  <div>
+    <input
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value="" />
+  </div>
+</div>
+`;
+
+exports[`test It renders a list of items 1`] = `
+<div
+  className="backlog">
+  <div>
+    Backlog
+  </div>
+  <div>
+    <input
+      checked={false}
+      onChange={[Function]}
+      type="checkbox" />
+    <span
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }>
+      hello
+    </span>
+    <button
+      onClick={[Function]}>
+      X
+    </button>
+  </div>
+  <div>
+    <input
+      checked={false}
+      onChange={[Function]}
+      type="checkbox" />
+    <span
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }>
+      it\'s me
+    </span>
+    <button
+      onClick={[Function]}>
+      X
+    </button>
+  </div>
+  <div>
+    <input
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value="" />
+  </div>
+</div>
+`;
+
+exports[`test renders a single item 1`] = `
+<div
+  className="backlog">
+  <div>
+    Backlog
+  </div>
+  <div>
+    <input
+      checked={false}
+      onChange={[Function]}
+      type="checkbox" />
+    <span
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }>
+      hello
+    </span>
+    <button
+      onClick={[Function]}>
+      X
+    </button>
+  </div>
+  <div>
+    <input
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value="" />
+  </div>
+</div>
+`;
+
+exports[`test renders no items 1`] = `
+<div
+  className="backlog">
+  <div>
+    Backlog
+  </div>
+  <div>
+    <input
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value="" />
+  </div>
+</div>
+`;
