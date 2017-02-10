@@ -3,12 +3,14 @@ import { LogItemInput } from './LogItemInput';
 import { connect } from 'react-redux';
 import { LogItem } from './LogItem';
 import { isOlderThanOneDay } from '../utils/time';
+import "./Backlog.css"
 
 const BacklogComponent = ({
+  params,
   listItems
 }) => (
   <div className="backlog">
-    <LogTitle/>
+    <LogTitle name={params.name}/>
     {
       listItems.filter(function (item) {
         return !isOlderThanOneDay(new Date(item.dateCompleted));
@@ -23,9 +25,11 @@ const BacklogComponent = ({
   </div>
 );
 
-const LogTitle = () => (
-  <div>
-    Backlog
+const LogTitle = ({
+  name
+}) => (
+  <div className="title">
+    Welcome, { name }
   </div>
 );
 

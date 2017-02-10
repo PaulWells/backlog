@@ -9,7 +9,7 @@ const Input = ({
   handleTextChange,
   value
 }) => (
-  <div>
+  <div className="logItemInput">
     <input type="text" value={value} onChange={handleTextChange} onKeyDown={onKeyDown}>
     </input>
   </div>

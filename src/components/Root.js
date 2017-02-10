@@ -3,18 +3,19 @@ import { Provider } from 'react-redux';
 import './Root.css';
 import Backlog from './Backlog';
 import { Router, Route, browserHistory } from 'react-router';
+import SignIn from './SignIn';
 
-const routes = (
-  <Route path='/' component={ Backlog }/>
+const router = (
+  <Router history={browserHistory} >
+    <Route path='/backlog/:name' component={ Backlog }/>
+    <Route path='/' component={ SignIn }/>
+  </Router>
 )
 
 const Root = ({store}) => (
     <Provider store={ store }>
-      <Router history={browserHistory} >
-        { routes }
-      </Router>
+      { router }
     </Provider>
 );
-
 
 export default Root;
