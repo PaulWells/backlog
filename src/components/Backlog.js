@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { LogItem } from './LogItem';
 import { isOlderThanOneDay } from '../utils/time';
 import "./Backlog.css"
+import Facebook from '../utils/facebook';
+import { browserHistory } from 'react-router';
 
 const BacklogComponent = ({
   params,
@@ -22,8 +24,21 @@ const BacklogComponent = ({
       })
     }
     <LogItemInput/>
+    <LogOut/>
   </div>
 );
+
+const LogOut = () => (
+  <button
+    onClick={() => {
+      Facebook.logOut(function () {
+         browserHistory.push('/');
+      });
+    }}
+  >
+    Log Out
+  </button>
+)
 
 const LogTitle = ({
   name
