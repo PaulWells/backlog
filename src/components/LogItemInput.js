@@ -7,7 +7,7 @@ import { createListItem } from '../objectCreators';
 const Input = ({
   onKeyDown,
   handleTextChange,
-  value
+  value,
 }) => (
   <div className="logItemInput">
     <input type="text" value={value} onChange={handleTextChange} onKeyDown={onKeyDown}>
@@ -15,8 +15,8 @@ const Input = ({
   </div>
 );
 
-const mapStateToProps = (state) => ({
-    value: state ? state.inputText : ""
+const mapStateToProps = (state, ownProps) => ({
+    value: state ? state.inputText : "",
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -32,7 +32,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return {
     onKeyDown: (event) => {
       if (event.key === 'Enter') {
-        dispatch(ActionCreators.addListItem(createListItem(value)));
+        dispatch(ActionCreators.addListItem(createListItem(value, ownProps.id)));
       }
     },
     handleTextChange: dispatchProps.handleTextChange,

@@ -8,7 +8,7 @@ import NotAuthorized from './NotAuthorized';
 
 const router = (
   <Router history={browserHistory} >
-    <Route path='/backlog/:name' component={ ContentPage }/>
+    <Route path='/backlog/:id/:name' component={ ContentPage }/>
     <Route path='/' component={ SignIn }/>
     <Route path='/NotAuthorized' component={ NotAuthorized }/>
   </Router>

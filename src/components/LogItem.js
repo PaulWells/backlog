@@ -6,16 +6,16 @@ import { currentTime } from '../utils/time';
 const ListItem = ({
   completed,
   text,
+  color,
   handleCheck,
   onDelete
 }) => (
+
   <div>
   <CheckBox checked={completed} handleCheck={handleCheck}/>
   <span style={{
-          textDecoration:
-          completed ?
-            'line-through' :
-            'none'
+          color: color,
+          textDecoration: completed ? 'line-through' : 'none'
         }}>
         {text}
   </span>
@@ -44,6 +44,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     completed,
     text: listItem.text,
+    // eslint-disable-next-line
+    color: listItem.addedBy == 0 ? "SteelBlue": "plum",
     handleCheck: () => {
       dispatch(ActionCreators.toggleListItemCompleted(completed, id, currentTime()));
     },

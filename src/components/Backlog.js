@@ -7,6 +7,7 @@ import "./Backlog.css"
 
 const BacklogComponent = ({
   name,
+  id,
   listItems
 }) => (
   <div className="backlog">
@@ -21,7 +22,7 @@ const BacklogComponent = ({
                 key={item.id}/>;
       })
     }
-    <LogItemInput/>
+    <LogItemInput id={id}/>
   </div>
 );
 

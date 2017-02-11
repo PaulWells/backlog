@@ -10,7 +10,6 @@ class SignInComponent extends React.Component {
 
   componentDidMount() {
     Facebook.loadFbLoginApi(window, document, this);
-    console.log('componentDidMount2');
   }
 
   render () {
@@ -24,7 +23,7 @@ class SignInComponent extends React.Component {
               isUserAuthorized().then(function (authInfo) {
                 const name = authInfo.name;
                 if (authInfo.authorized) {
-                  browserHistory.push('/backlog/' + name.substr(0, name.indexOf(" ")));
+                  browserHistory.push('/backlog/' + authInfo.backlogID + '/' + name.substr(0, name.indexOf(" ")));
                 } else {
                   browserHistory.push('/notAuthorized/');
                 }

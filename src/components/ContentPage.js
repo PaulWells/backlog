@@ -19,7 +19,7 @@ class ContentPage extends React.Component {
   render () {
     return (
       <div >
-        <Backlog name={this.props.params.name}/>
+        <Backlog name={this.props.params.name} id={this.props.params.id}/>
       </div>
     )
   }
