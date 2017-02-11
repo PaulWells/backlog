@@ -1,8 +1,8 @@
 import React from 'react';
-// import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import './SignIn.css';
 import Facebook from '../utils/facebook';
+import isUserAuthorized from '../utils/authorization';
 /*global FB*/
 
 
@@ -20,15 +20,15 @@ class SignInComponent extends React.Component {
         <div>
           <button
             onClick={() => {
-              Facebook.checkLoginState(function () {
-                console.log('checkLoginState');
-                Facebook.getMyFacebookInfo(function(response) {
-                  console.log('getMyFacebookInfo');
-                  const name = response.name;
-                  browserHistory.push('/backlog/' + name.substr(0, name.indexOf(" ")));
-                });
 
-              });
+              isUserAuthorized().then(function (authInfo) {
+                const name = authInfo.name;
+                if (authInfo.authorized) {
+                  browserHistory.push('/backlog/' + name.substr(0, name.indexOf(" ")));
+                } else {
+                  browserHistory.push('/notAuthorized/');
+                }
+              })
             }}
           >
             Log In

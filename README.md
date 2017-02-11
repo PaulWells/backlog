@@ -13,13 +13,16 @@ https://paulwells.github.io/backlog/
 - <b>Windows UWP</b>
 - <b>Android app</b>
   - notifications
-- Integrate react-router & add sign-in page
-- iOS app
+- <b>Integrate react-router & add sign-in page</b>
 - Authentication & different users
-- Integrate bootstrap (Improve UI)
-- Add tests for basic web UI
+ - redirect when not logged in to facebook
+ - No Friends Page
+ - Creating User account when new user logs in
+ -
+- <b>Add tests for basic web UI
   - Reducers
-  - snapshot testing
+  - snapshot testing </b>
+- - iOS app
 - Get updates (actions) from changes in firebase data
 - Update only the changing items when writing data to db
 - Handle synchronous updates

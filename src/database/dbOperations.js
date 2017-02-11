@@ -18,7 +18,11 @@ function updateFirebase(state) {
 }
 
 function getAppState() {
-  return firebase.database().ref('logItem/').orderByChild('id').once('value')
+  return firebase.database().ref('logItem/').orderByChild('id').once('value');
 }
 
-export { updateFirebase, getAppState }
+function getUsers() {
+  return firebase.database().ref('user/').orderByChild('id').once('value');
+}
+
+export { updateFirebase, getAppState, getUsers }

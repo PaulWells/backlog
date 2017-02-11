@@ -1,43 +1,43 @@
 /*global FB*/
 
 const loadFbLoginApi = (window, document, self) => {
-  window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '1705022909788711',
-        cookie     : true,  // enable cookies to allow the server to access
-                            // the session
-        xfbml      : true,
-        version    : 'v2.8'
-    });
-    FB.AppEvents.logPageView();
-  }.bind(self);
+  return new Promise(function (resolved, rejected) {
+    window.fbAsyncInit = function() {
+      FB.init({
+          appId      : '1705022909788711',
+          cookie     : true,  // enable cookies to allow the server to access
+                              // the session
+          xfbml      : true,
+          version    : 'v2.8'
+      });
+      FB.AppEvents.logPageView();
+      resolved();
+       // ignore unnecesary bind warning
+       // eslint-disable-next-line
+    }.bind(self);
 
-  // Load the SDK asynchronously
-  function loadSDK(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  };
+    // Load the SDK asynchronously
+    function loadSDK(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    };
 
-  loadSDK(document, 'script', 'facebook-jssdk');
+    loadSDK(document, 'script', 'facebook-jssdk');
+  });
 }
 
 const checkLoginState = (onConnected) => {
 
   const statusChangeCallback = (response) => {
-    console.log('statusChangeCallback');
-    console.log(response);
     if (response.status === 'connected') {
-      console.log('connected');
       if (onConnected) {
         onConnected();
       }
     } else if (response.status === 'not_authorized') {
-        console.log("Please log into this app.");
     } else {
-        console.log("Please log into this facebook.");
     }
   }
 
@@ -52,16 +52,12 @@ const login = (onConnected) => {
 
 const getMyFacebookInfo = (onComplete) => {
   FB.api('/me', function(response) {
-    console.log('/me response');
-    console.log(response);
     onComplete(response)
   });
 }
 
 const getMyFriends = () => {
   FB.api('/me/friends', function(response) {
-    console.log('/me/friends');
-    console.log(response);
   });
 }
 
