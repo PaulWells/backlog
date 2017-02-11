@@ -11,18 +11,22 @@ const BacklogComponent = ({
   listItems
 }) => (
   <div className="backlog">
-    <LogTitle name={name}/>
-    {
-      listItems.filter(function (item) {
-        return !isOlderThanOneDay(new Date(item.dateCompleted));
-      })
-      .map(function(item, i){
-        return <LogItem
-                listItem={item}
-                key={item.id}/>;
-      })
-    }
-    <LogItemInput id={id}/>
+    <div className="backlogContent">
+      <div className="backlogListContent">
+        {
+          listItems.filter(function (item) {
+            return !isOlderThanOneDay(new Date(item.dateCompleted));
+          })
+          .map(function(item, i){
+            return <LogItem
+                    listItem={item}
+                    key={item.id}/>;
+          }).reverse()
+        }
+      </div>
+      <LogItemInput id={id}/>
+    </div>
+
   </div>
 );
 

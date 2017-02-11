@@ -1,5 +1,6 @@
 .notAuthorized {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 70px;
   font-size: 20;
+  color: red;
 }

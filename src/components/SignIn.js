@@ -15,9 +15,8 @@ class SignInComponent extends React.Component {
   render () {
     return (
       <div className="signIn">
-        Welcome To Backlog
         <div>
-          <button
+          <button className="facebookLogin"
             onClick={() => {
 
               isUserAuthorized().then(function (authInfo) {
@@ -30,7 +29,7 @@ class SignInComponent extends React.Component {
               })
             }}
           >
-            Log In
+            Log In With Facebook
           </button>
         </div>
       </div>

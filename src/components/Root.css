@@ -1,1 +1,28 @@
+.appTitle {
+  font-size: 30px;
+  padding-left: 20px;
+}
 
+.titleBar {
+  width: 100%;
+  background-color: DarkCyan;
+  color: white;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position:fixed;
+  top:0;
+}
+
+.root {
+  overflow-y: hidden;
+}
+
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
+}

@@ -8,10 +8,13 @@ const Input = ({
   onKeyDown,
   handleTextChange,
   value,
+  color
 }) => (
-  <div className="logItemInput">
-    <input type="text" value={value} onChange={handleTextChange} onKeyDown={onKeyDown}>
-    </input>
+  <div className="logItemInputContainer">
+    <textarea className="logItemInput" autoFocus type="text" placeholder="type a reminder..." value={value} style={{
+            color: color,
+          }} onChange={handleTextChange} onKeyDown={onKeyDown}>
+    </textarea>
   </div>
 );
 
@@ -37,6 +40,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
     handleTextChange: dispatchProps.handleTextChange,
     value,
+    color: ownProps.id == 0 ? 'SteelBlue' : 'plum'
   }
 };
 

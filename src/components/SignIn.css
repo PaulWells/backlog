@@ -1,4 +1,9 @@
 .signIn {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 70px;
+}
+
+.facebookLogin {
+  color: white;
+  background-color: rgb(44, 67, 136);
 }

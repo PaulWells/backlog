@@ -11,15 +11,17 @@ const ListItem = ({
   onDelete
 }) => (
 
-  <div>
-  <CheckBox checked={completed} handleCheck={handleCheck}/>
-  <span style={{
-          color: color,
-          textDecoration: completed ? 'line-through' : 'none'
-        }}>
-        {text}
-  </span>
+  <div className="logItem">
   <DeleteIcon onDelete={onDelete}/>
+  <CheckBox checked={completed} handleCheck={handleCheck}/>
+  <span className="logItemTextContainer">
+    <span className="logItemText" style={{
+            color: color,
+            textDecoration: completed ? 'line-through' : 'none'
+          }}>
+          {text}
+    </span>
+  </span>
   </div>
 );
 
@@ -33,7 +35,7 @@ const CheckBox = ({
 const DeleteIcon = ({
   onDelete
 }) => (
-  <button onClick={onDelete}>X</button>
+  <button className="deleteLogItemIcon" onClick={onDelete}>X</button>
 );
 
 const mapDispatchToProps = (dispatch, ownProps) => {

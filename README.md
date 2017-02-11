@@ -14,18 +14,16 @@ https://paulwells.github.io/backlog/
 - <b>Android app</b>
   - notifications
 - <b>Integrate react-router & add sign-in page</b>
-- Authentication & different users
- - redirect when not logged in to facebook
- - No Friends Page
- - Creating User account when new user logs in
- -
+- <b> Authentication & different users <b>
+ - <b>redirect to signin when not logged in to facebook</b>
 - <b>Add tests for basic web UI
   - Reducers
   - snapshot testing </b>
-- - iOS app
+- Setting for viewing completed items
 - Get updates (actions) from changes in firebase data
 - Update only the changing items when writing data to db
 - Handle synchronous updates
+- iOS app
 
 ## Features
 

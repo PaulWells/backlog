@@ -16,7 +16,12 @@ const router = (
 
 const Root = ({store}) => (
     <Provider store={ store }>
-      { router }
+      <div>
+        <div className="titleBar">
+          <div className="appTitle">Backlog</div>
+        </div>
+        { router }
+      </div>
     </Provider>
 );
 
