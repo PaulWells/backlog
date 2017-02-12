@@ -11,9 +11,15 @@ const Input = ({
   color
 }) => (
   <div className="logItemInputContainer">
-    <textarea className="logItemInput" autoFocus type="text" placeholder="type a reminder..." value={value} style={{
-            color: color,
-          }} onChange={handleTextChange} onKeyDown={onKeyDown}>
+    <textarea
+        className="logItemInput"
+        autoFocus type="text"
+        placeholder="type a reminder..."
+        value={value}
+        style={{
+          color: color,
+        }}
+        onChange={handleTextChange} onKeyDown={onKeyDown}>
     </textarea>
   </div>
 );
@@ -35,7 +41,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return {
     onKeyDown: (event) => {
       if (event.key === 'Enter') {
-        dispatch(ActionCreators.addListItem(createListItem(value, ownProps.id)));
+        dispatch(ActionCreators.addListItem(createListItem(value.trim(), ownProps.id)));
       }
     },
     handleTextChange: dispatchProps.handleTextChange,

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Backlog from './Backlog';
-import { mockEmptyStore, mockSingleItemStore, mockMultipleItemStore, mockExpiredItemStore } from '../mocks/mockStore';
+import { mockEmptyStore, mockSingleItemStore, mockMultipleItemStore, mockExpiredCompletedItemStore, mockOldItemStore } from '../mocks/mockStore';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 
@@ -50,7 +50,17 @@ test('It renders a list of items', () => {
 test('It does not render items that were completed more than 24 hours ago', () => {
   const tree = renderer.create(
     (
-      <Provider store={ mockExpiredItemStore }>
+      <Provider store={ mockExpiredCompletedItemStore }>
+        <Backlog/>
+      </Provider>
+    )).toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test('It does not render items that were created more than 2 weeks ago', () => {
+  const tree = renderer.create(
+    (
+      <Provider store={ mockOldItemStore }>
         <Backlog/>
       </Provider>
     )).toJSON();

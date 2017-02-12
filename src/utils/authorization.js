@@ -6,19 +6,21 @@ export default () => {
     Facebook.checkLoginState(function (response) {
       Facebook.getMyFacebookInfo(function(response) {
         const name = response.name;
-        const id = response.id;
+        const facebookID = response.id;
         getUsers().then(function (users) {
           let backlogID = users.val().reduce(function (id, user) {
             // eslint-disable-next-line
-            if (user.facebookID == id) {
+            console.log('id: ' + facebookID);
+            console.log('facebookID: ' + user.facebookID);
+            if (user.facebookID == facebookID) {
               return user.id;
             }
-            return id
+            return id;
           }, 0);
           let authorized = users.val().reduce(function (result, user) {
              // ignore double equals warning
              // eslint-disable-next-line
-            return result || user.facebookID == id;
+            return result || user.facebookID == facebookID;
           }, false);
           resolved({authorized, name, backlogID});
         });

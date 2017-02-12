@@ -19,6 +19,7 @@ https://paulwells.github.io/backlog/
 - <b>Add tests for basic web UI
   - Reducers
   - snapshot testing </b>
+- Archive old items that aren't completed
 - Setting for viewing completed items
 - Get updates (actions) from changes in firebase data
 - Update only the changing items when writing data to db

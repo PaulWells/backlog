@@ -18,8 +18,9 @@ class SignInComponent extends React.Component {
         <div>
           <button className="facebookLogin"
             onClick={() => {
-
-              isUserAuthorized().then(function (authInfo) {
+              Facebook.login().then(function () {
+                return isUserAuthorized();
+              }).then(function (authInfo) {
                 const name = authInfo.name;
                 if (authInfo.authorized) {
                   browserHistory.push('/backlog/' + authInfo.backlogID + '/' + name.substr(0, name.indexOf(" ")));

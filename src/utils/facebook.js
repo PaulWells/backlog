@@ -32,12 +32,11 @@ const loadFbLoginApi = (window, document, self) => {
 const checkLoginState = (onConnected) => {
 
   const statusChangeCallback = (response) => {
+    console.log(response);
     if (response.status === 'connected') {
       if (onConnected) {
         onConnected();
       }
-    } else if (response.status === 'not_authorized') {
-    } else {
     }
   }
 
@@ -46,8 +45,11 @@ const checkLoginState = (onConnected) => {
   }, true);
 }
 
-const login = (onConnected) => {
-  FB.login(checkLoginState(onConnected), {scope: 'user_friends'});
+const login = () => {
+  return new Promise(function (resolved, rejected) {
+    FB.login(resolved, {scope: 'user_friends'});
+  });
+
 }
 
 const getMyFacebookInfo = (onComplete) => {

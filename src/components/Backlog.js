@@ -2,7 +2,7 @@ import React from 'react';
 import { LogItemInput } from './LogItemInput';
 import { connect } from 'react-redux';
 import { LogItem } from './LogItem';
-import { isOlderThanOneDay } from '../utils/time';
+import { isOlderThanOneDay, isOlderThanTwoWeeks } from '../utils/time';
 import "./Backlog.css"
 
 const BacklogComponent = ({
@@ -15,7 +15,8 @@ const BacklogComponent = ({
       <div className="backlogListContent">
         {
           listItems.filter(function (item) {
-            return !isOlderThanOneDay(new Date(item.dateCompleted));
+            return !(isOlderThanOneDay(new Date(item.dateCompleted)) ||
+                     isOlderThanTwoWeeks(new Date(item.dateAdded)));
           })
           .map(function(item, i){
             return <LogItem

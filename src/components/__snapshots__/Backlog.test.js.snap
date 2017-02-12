@@ -1,15 +1,53 @@
 exports[`test It does not render items that were completed more than 24 hours ago 1`] = `
 <div
   className="backlog">
-  <div>
-    Backlog
+  <div
+    className="backlogContent">
+    <div
+      className="backlogListContent" />
+    <div
+      className="logItemInputContainer">
+      <textarea
+        autoFocus={true}
+        className="logItemInput"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="type a reminder..."
+        style={
+          Object {
+            "color": "plum",
+          }
+        }
+        type="text"
+        value="" />
+    </div>
   </div>
-  <div>
-    <input
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      type="text"
-      value="" />
+</div>
+`;
+
+exports[`test It does not render items that were created more than 2 weeks ago 1`] = `
+<div
+  className="backlog">
+  <div
+    className="backlogContent">
+    <div
+      className="backlogListContent" />
+    <div
+      className="logItemInputContainer">
+      <textarea
+        autoFocus={true}
+        className="logItemInput"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="type a reminder..."
+        style={
+          Object {
+            "color": "plum",
+          }
+        }
+        type="text"
+        value="" />
+    </div>
   </div>
 </div>
 `;
@@ -17,51 +55,77 @@ exports[`test It does not render items that were completed more than 24 hours ag
 exports[`test It renders a list of items 1`] = `
 <div
   className="backlog">
-  <div>
-    Backlog
-  </div>
-  <div>
-    <input
-      checked={false}
-      onChange={[Function]}
-      type="checkbox" />
-    <span
-      style={
-        Object {
-          "textDecoration": "none",
+  <div
+    className="backlogContent">
+    <div
+      className="backlogListContent">
+      <div
+        className="logItem">
+        <button
+          className="deleteLogItemIcon"
+          onClick={[Function]}>
+          X
+        </button>
+        <input
+          checked={false}
+          onChange={[Function]}
+          type="checkbox" />
+        <span
+          className="logItemTextContainer">
+          <span
+            className="logItemText"
+            style={
+              Object {
+                "color": "plum",
+                "textDecoration": "none",
+              }
+            }>
+            it\'s me
+          </span>
+        </span>
+      </div>
+      <div
+        className="logItem">
+        <button
+          className="deleteLogItemIcon"
+          onClick={[Function]}>
+          X
+        </button>
+        <input
+          checked={false}
+          onChange={[Function]}
+          type="checkbox" />
+        <span
+          className="logItemTextContainer">
+          <span
+            className="logItemText"
+            style={
+              Object {
+                "color": "plum",
+                "textDecoration": "none",
+              }
+            }>
+            hello
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      className="logItemInputContainer">
+      <textarea
+        autoFocus={true}
+        className="logItemInput"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="type a reminder..."
+        style={
+          Object {
+            "color": "plum",
+          }
         }
-      }>
-      hello
-    </span>
-    <button
-      onClick={[Function]}>
-      X
-    </button>
-  </div>
-  <div>
-    <input
-      checked={false}
-      onChange={[Function]}
-      type="checkbox" />
-    <span
-      style={
-        Object {
-          "textDecoration": "none",
-        }
-      }>
-      it\'s me
-    </span>
-    <button
-      onClick={[Function]}>
-      X
-    </button>
-  </div>
-  <div>
-    <input
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      type="text"
-      value="" />
+        type="text"
+        value="" />
+    </div>
   </div>
 </div>
 `;
@@ -69,33 +133,52 @@ exports[`test It renders a list of items 1`] = `
 exports[`test renders a single item 1`] = `
 <div
   className="backlog">
-  <div>
-    Backlog
-  </div>
-  <div>
-    <input
-      checked={false}
-      onChange={[Function]}
-      type="checkbox" />
-    <span
-      style={
-        Object {
-          "textDecoration": "none",
+  <div
+    className="backlogContent">
+    <div
+      className="backlogListContent">
+      <div
+        className="logItem">
+        <button
+          className="deleteLogItemIcon"
+          onClick={[Function]}>
+          X
+        </button>
+        <input
+          checked={false}
+          onChange={[Function]}
+          type="checkbox" />
+        <span
+          className="logItemTextContainer">
+          <span
+            className="logItemText"
+            style={
+              Object {
+                "color": "plum",
+                "textDecoration": "none",
+              }
+            }>
+            hello
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      className="logItemInputContainer">
+      <textarea
+        autoFocus={true}
+        className="logItemInput"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="type a reminder..."
+        style={
+          Object {
+            "color": "plum",
+          }
         }
-      }>
-      hello
-    </span>
-    <button
-      onClick={[Function]}>
-      X
-    </button>
-  </div>
-  <div>
-    <input
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      type="text"
-      value="" />
+        type="text"
+        value="" />
+    </div>
   </div>
 </div>
 `;
@@ -103,15 +186,26 @@ exports[`test renders a single item 1`] = `
 exports[`test renders no items 1`] = `
 <div
   className="backlog">
-  <div>
-    Backlog
-  </div>
-  <div>
-    <input
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      type="text"
-      value="" />
+  <div
+    className="backlogContent">
+    <div
+      className="backlogListContent" />
+    <div
+      className="logItemInputContainer">
+      <textarea
+        autoFocus={true}
+        className="logItemInput"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="type a reminder..."
+        style={
+          Object {
+            "color": "plum",
+          }
+        }
+        type="text"
+        value="" />
+    </div>
   </div>
 </div>
 `;
