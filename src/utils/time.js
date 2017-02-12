@@ -4,6 +4,10 @@ const hour = minute * 60;
 const day = hour * 24;
 const week = day * 7;
 
+export const currentTime = () => {
+  return new Date(Date.now());
+}
+
 export const isOlderThanOneDay = (date) => {
   if (!date) {
     return false;
@@ -17,10 +21,6 @@ export const isOlderThanTwoWeeks = (date) => {
     return true;
   }
   return (currentTime() - date) > week * 2;
-}
-
-export const currentTime = () => {
-  return new Date(Date.now());
 }
 
 export const moreThanOneDayAgo = () => {

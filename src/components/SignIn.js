@@ -9,7 +9,14 @@ import isUserAuthorized from '../utils/authorization';
 class SignInComponent extends React.Component {
 
   componentDidMount() {
-    Facebook.loadFbLoginApi(window, document, this);
+    Facebook.loadFbLoginApi(window, document, this).then(function () {
+      return isUserAuthorized();
+    }).then(function (authInfo) {
+      const name = authInfo.name;
+      if (authInfo.authorized) {
+        browserHistory.push('/backlog/' + authInfo.backlogID + '/' + name.substr(0, name.indexOf(" ")));
+      }
+    });
   }
 
   render () {
@@ -25,9 +32,9 @@ class SignInComponent extends React.Component {
                 if (authInfo.authorized) {
                   browserHistory.push('/backlog/' + authInfo.backlogID + '/' + name.substr(0, name.indexOf(" ")));
                 } else {
-                  browserHistory.push('/notAuthorized/');
+                  browserHistory.push('/NotAuthorized/');
                 }
-              })
+              });
             }}
           >
             Log In With Facebook

@@ -10,8 +10,6 @@ export default () => {
         getUsers().then(function (users) {
           let backlogID = users.val().reduce(function (id, user) {
             // eslint-disable-next-line
-            console.log('id: ' + facebookID);
-            console.log('facebookID: ' + user.facebookID);
             if (user.facebookID == facebookID) {
               return user.id;
             }

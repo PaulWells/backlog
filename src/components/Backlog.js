@@ -31,14 +31,6 @@ const BacklogComponent = ({
   </div>
 );
 
-const LogTitle = ({
-  name
-}) => (
-  <div className="title">
-    Welcome, { name }
-  </div>
-);
-
 const mapStateToProps = (state) => {
   return {
     listItems: state.listItems

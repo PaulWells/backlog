@@ -46,6 +46,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
     handleTextChange: dispatchProps.handleTextChange,
     value,
+    // eslint-disable-next-line
     color: ownProps.id == 0 ? 'SteelBlue' : 'plum'
   }
 };
